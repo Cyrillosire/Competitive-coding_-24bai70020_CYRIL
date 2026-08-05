@@ -1,0 +1,32 @@
+class Myqueue:
+    def __init__(self):
+        self.stack1 = []
+
+    def push(self, element):
+        self.stack1.append(element)
+
+    def empty(self):
+        return len(self.stack1) == 0
+
+    def pop(self):
+        if self.empty():
+            return "Queue is empty"
+    
+        return self.stack1.pop()
+
+    def peak(self):
+        if self.empty():
+            return "Queue is empty"
+
+        return self.stack1
+
+
+queue = Myqueue()
+queue.push(3)
+queue.push(4)
+queue.push(5)
+
+print(queue.peak())
+print(queue.pop())
+print(queue.empty())
+print(queue.peak())

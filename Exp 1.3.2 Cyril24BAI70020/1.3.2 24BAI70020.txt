@@ -1,0 +1,37 @@
+class Solution:
+    def largestRectangleArea(self, heights):
+        stack = []
+        max_area = 0
+        heights.append(0)
+
+        for i in range(len(heights)):
+            while stack and heights[i] < heights[stack[-1]]:
+                height = heights[stack.pop()]
+
+                if stack:
+                    width = i - stack[-1] - 1
+                else:
+                    width = i
+
+                area = height * width
+                max_area = max(max_area, area)
+
+            stack.append(i)
+
+        heights.pop()
+
+        return max_area
+
+
+def display_histogram(heights):
+    print("Histogram:", heights)
+
+
+heights = [2, 1, 5, 6, 2, 3]
+
+display_histogram(heights)
+
+solution = Solution()
+result = solution.largestRectangleArea(heights)
+
+print("Largest Rectangle Area:", result)

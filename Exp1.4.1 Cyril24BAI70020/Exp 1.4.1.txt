@@ -1,0 +1,52 @@
+class MyQueue:
+
+    def __init__(self):
+        self.stack_in = []
+        self.stack_out = []
+
+    def push(self, x):
+        self.stack_in.append(x)
+
+    def transfer(self):
+        while self.stack_in:
+            self.stack_out.append(self.stack_in.pop())
+
+    def pop(self):
+        if not self.stack_out:
+            self.transfer()
+
+        return self.stack_out.pop()
+
+    def peek(self):
+        if not self.stack_out:
+            self.transfer()
+
+        return self.stack_out[-1]
+
+    def empty(self):
+        return len(self.stack_in) == 0 and len(self.stack_out) == 0
+
+
+queue = MyQueue()
+
+queue.push(10)
+queue.push(20)
+queue.push(30)
+queue.push(40)
+
+print("Queue after pushing elements:")
+print("Stack In:", queue.stack_in)
+print("Stack Out:", queue.stack_out)
+
+print("Front element:", queue.peek())
+print("Removed element:", queue.pop())
+print("Removed element:", queue.pop())
+
+queue.push(50)
+
+print("Front element after adding 50:", queue.peek())
+print("Removed element:", queue.pop())
+print("Removed element:", queue.pop())
+print("Removed element:", queue.pop())
+
+print("Is queue empty?", queue.empty())
